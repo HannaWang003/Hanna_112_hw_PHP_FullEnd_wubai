@@ -13,6 +13,8 @@ include_once "./api/db.php";
     <!-- <link rel="stylesheet" href="./node_modules/self/style.css?do"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css' />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 <?php

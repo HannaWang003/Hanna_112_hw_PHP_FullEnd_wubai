@@ -16,7 +16,7 @@
     margin: 5px;
     display: grid;
     place-items: center;
-    box-shadow:inset -5px -5px 10px #000;
+    box-shadow: inset -5px -5px 10px #000;
 
     /* &:before {
         content: "";
@@ -25,17 +25,19 @@
     } */
 
 }
+
 .block-yellow {
     background: yellow;
 }
-.block-black{
-    background:#333;
+
+.block-black {
+    background: #333;
 }
 </style>
 <section class="main-container" id="mainContainer">
     <div id="gaspItem1">
         <?php
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             // $c=rand(1,2);
             // switch($c){
             //     case 1:
@@ -46,7 +48,6 @@
             //         break;
             // }
             echo "<div class='block'></div>";
-            
         }
         ?>
     </div>
@@ -55,8 +56,8 @@
         <div class="goto" data-to="#NewsH2" data-scroll>News</div>
         <div class="goto" data-to="#EventV1" data-scroll>Event</div>
         <div class="goto" data-to="#GalleryH3" data-scroll>Gallery</div>
-        <div class="goto" data-to="#AboutV2"  data-scroll>About</div>
-        <div class="goto" data-to="#JoinH5"  data-scroll>Club</div>
+        <div class="goto" data-to="#AboutV2" data-scroll>About</div>
+        <div class="goto" data-to="#JoinH5" data-scroll>Club</div>
     </div>
     <!-- Footer -->
     <!-- Header -->
@@ -100,8 +101,8 @@
                     <td><span class="goto" data-to="#NewsH2" data-scroll>News</span></td>
                     <td><span class="goto" data-to="#EventV1" data-scroll>Event</td>
                     <td><span class="goto" data-to="#GalleryH3" data-scroll>Gallery</td>
-                    <td><span class="goto" data-to="#AboutV2"  data-scroll>About</td>
-                    <td><span class="goto" data-to="#JoinH5"  data-scroll>Club</td>
+                    <td><span class="goto" data-to="#AboutV2" data-scroll>About</td>
+                    <td><span class="goto" data-to="#JoinH5" data-scroll>Club</td>
                 </tr>
             </table>
         </div>
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
         onEnter: function() {
             gsap.to(blocks, {
                 scale: 0,
-                stagger: 0.01,
+                stagger: 0.05,
                 repeat: -1,
                 overwrite: "auto",
                 yoyo: true,

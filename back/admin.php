@@ -1,13 +1,18 @@
+<style>
+    #admin td {
+        padding: 20px;
+    }
+</style>
 <h1>Account M</h1>
 <div id="admin">
     <div class="text-end"><i class="add fa-solid fa-user-plus fa-2xl"></i></div>
     <div>
         <form action="./api/edit_admin.php" method="post">
-            <table>
+            <table class="mb-3">
                 <tr>
-                    <th>帳號</th>
-                    <th>密碼</th>
-                    <th>操作</th>
+                    <th>account</th>
+                    <th>password</th>
+                    <th>operate</th>
                 </tr>
                 <?php
                 $accs = $DB->all();
@@ -27,8 +32,8 @@
                 ?>
             </table>
             <div class="formSubmit">
-                <input id="edit" type="submit" value="修改確定">
-                <input type="reset" value="重置">
+                <input class="btn btn-light" id="edit" type="submit" value="modify">
+                <input class="btn btn-light" type="reset" value="clear">
             </div>
         </form>
         <div>

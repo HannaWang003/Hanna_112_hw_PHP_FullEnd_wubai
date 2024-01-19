@@ -23,7 +23,7 @@ header {
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 ion-icon,
