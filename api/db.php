@@ -127,7 +127,6 @@ $Music = new DB('music');
 $Concert = new DB('concert');
 $Gallery = new DB('gallery');
 $News = new DB('news');
-
 //判斷是否瀏覽過
 if (isset($_GET['do'])) {
     if (isset(${ucfirst($_GET['do'])})) {
