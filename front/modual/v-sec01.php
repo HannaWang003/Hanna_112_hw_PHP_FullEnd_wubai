@@ -5,11 +5,7 @@
         font-size: 2rem;
         padding: 2px;
     }
-    .album:hover{
-        /* background:#333; */
-        /* transform:scale(1.1);
-        transition: transform 0.5s ease-in-out */
-    }
+
 </style>
 <section id="EventV1" style="background:url('./img/20100709legacy3_07.jpeg');background-attachment:fixed;background-size:contain;background-position:right top" data-textcolor="#bcb8ad" class="vertical">
 
@@ -29,17 +25,17 @@
             // dd($musics);
             foreach ($rows as $music) {
             ?>
-                <div class="album col-5 d-flex align-content-stretch justify-content-center p-2 m-2" style=" color:white;position:relative;box-shadow:5px 5px 5px black;">
+                <div class="album col-5 d-flex align-content-stretch justify-content-center p-2 m-2" style=" color:white;position:relative;">
                     <div class="" style="word-wrap: break-word;white-space: normal;width:20%">
                         <?= $music['album'] ?>
                     </div>
                     <div class="mx-5"><img src="./img/<?= $music['img'] ?>" style="width:150px;box-shadow: 0px 0px 5px black"></div>
-                    <div class="track p-3" style="display:none;position:absolute;top:0;left:0;background:black;box-shadow:0 0 5px black;z-index:100">
+                    <div class="track p-3" style="display:none;position:absolute;top:0;left:-10px;background:black;width:450px;z-index:100">
                         <pre>
 <?= $music['note'] ?>
 </pre>
                     </div>
-                    <button class="trackBtn" data-open=".track">track</button>
+                    <button class="trackBtn" data-open=".track" style="z-index:101">track</button>
                 </div>
 
             <?php
@@ -91,6 +87,8 @@
 </section>
 <script>
 $('.trackBtn').click(function(){
-    $(this).parent().find('.track').toggle();
+    let parentElement = $(this).parent();
+$('.track').not(parentElement.find('.track')).hide();
+parentElement.find('.track').toggle();
 })
 </script>
