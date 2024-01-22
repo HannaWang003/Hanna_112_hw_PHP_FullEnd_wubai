@@ -14,15 +14,15 @@ function to($url)
 }
 class DB
 {
-    // protected $dsn = "mysql:host=localhost;charset=utf8;dbname=wubai";
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=s1120403";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=wubai";
+    // protected $dsn = "mysql:host=localhost;charset=utf8;dbname=s1120403";
     protected $pdo;
     protected $table;
     function __construct($table)
     {
         $this->table = $table;
-        // $this->pdo = new PDO($this->dsn, 'root', '');
-        $this->pdo = new PDO($this->dsn, 's1120403', 's1120403');
+        $this->pdo = new PDO($this->dsn, 'root', '');
+        // $this->pdo = new PDO($this->dsn, 's1120403', 's1120403');
     }
     function all($where = '', $other = '')
     {
