@@ -1,4 +1,5 @@
 <?php
+include_once "db.php";
 $total = $Music->count();
 $nowpage = ($_GET['page']) ?? 1;
 $size = 6;
@@ -13,4 +14,3 @@ $response = [
 
 header('Content-Type: application/json');
 echo json_encode($response);
-?>

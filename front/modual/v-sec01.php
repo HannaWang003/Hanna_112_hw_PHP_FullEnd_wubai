@@ -5,7 +5,6 @@
         font-size: 2rem;
         padding: 2px;
     }
-
 </style>
 <section id="EventV1" style="background:url('./img/20100709legacy3_07.jpeg');background-attachment:fixed;background-size:contain;background-position:right top" data-textcolor="#bcb8ad" class="vertical">
 
@@ -13,43 +12,11 @@
 
         <div class="inner-section">
             <h1><span data-scroll data-scroll-direction="horizontal" data-scroll-speed="-1">EVENT</span> <span data-scroll data-scroll-direction="horizontal" data-scroll-speed="-2">MUSIC</span> <span data-scroll data-scroll-direction="horizontal" data-scroll-speed="1">album</span></h1>
-            <div class="row justify-content-end w-75 ms-auto me-0">
-            <?php
-            $total = $Music->count();
-            $nowpage = ($_GET['musicp']) ?? 1;
-            $size = 6;
-            $pages = ceil($total / $size);
-            $start = ($nowpage - 1) * $size;
-            $rows = $Music->all(" order by date desc limit $start,$size");
-            // $musics=$Music->all('limit 0,3');
-            // dd($musics);
-            foreach ($rows as $music) {
-            ?>
-                <div class="album col-5 d-flex align-content-stretch justify-content-center p-2 m-2" style=" color:white;position:relative;">
-                    <div class="" style="word-wrap: break-word;white-space: normal;width:20%">
-                        <?= $music['album'] ?>
-                    </div>
-                    <div class="mx-5"><img src="./img/<?= $music['img'] ?>" style="width:150px;box-shadow: 0px 0px 5px black"></div>
-                    <div class="track p-3" style="display:none;position:absolute;top:0;left:-10px;background:black;width:450px;z-index:100">
-                        <pre>
-<?= $music['note'] ?>
-</pre>
-                    </div>
-                    <button class="trackBtn" data-open=".track" style="z-index:101">track</button>
-                </div>
+            <div id=musicList class="row justify-content-end w-75 ms-auto me-0">
 
-            <?php
-            }
-            ?>
             </div>
-            <p style="position:absolute;bottom:0;" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
-                <?php
-                for ($i = 1; $i <= $pages; $i++) {
-                    $style = ($i == $nowpage) ? "font-size:3rem;font-weight:bolder;" : "";
-                    echo "<a href='?musicp=$i' style='$style'>$i</a>";
-                }
+            <p id="musicPageList" style="position:absolute;bottom:0;" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
 
-                ?>
             </p>
         </div>
 
@@ -86,9 +53,65 @@
 
 </section>
 <script>
-$('.trackBtn').click(function(){
-    let parentElement = $(this).parent();
-$('.track').not(parentElement.find('.track')).hide();
-parentElement.find('.track').toggle();
-})
+    loadMusic(1);
+    // $('.trackBtn').click(function() {
+    //     let parentElement = $(this).parent();
+    //     $('.track').not(parentElement.find('.track')).hide();
+    //     parentElement.find('.track').toggle();
+    // })
+    $('#musicList').on('click', '.trackBtn', function() {
+        let parentElement = $(this).parent();
+        $('.track').not(parentElement.find('.track')).hide();
+        parentElement.find('.track').toggle();
+
+    })
+
+    function loadMusic(page) {
+        $.get('./api/album-page.php', {
+            page
+        }, function(response) {
+            $('#musicPageList').html(MusicPageListHtml(page, response.pages))
+            $('#musicList').html(MusicListHtml(response.rows))
+            // console.log(response.rows)
+        })
+    }
+
+    function MusicPageListHtml(nowPage, pages) {
+        let html = '';
+        for (i = 1; i <= pages; i++) {
+            let style = (i == nowPage) ? "font-size:3rem;font-weight:bolder;" : "";
+            let tmp = `
+        <a href="#" data-page="${i}" style="${style}"> ${i}  </a>
+        `
+            html += tmp
+        }
+        return html;
+    }
+
+
+    function MusicListHtml(rows) {
+        let html = ''
+        rows.forEach(function(music) {
+            let tmp = `
+            <div class="album col-5 d-flex align-content-stretch justify-content-center p-2 m-2" style=" color:white;position:relative;">
+            <div class="" style="word-wrap: break-word;white-space: normal;width:20%">
+            ${music.album}
+            </div>
+            <div class="mx-5"><img src="./img/${music.img}" style="width:150px;box-shadow: 0px 0px 5px black"></div>
+            <div class="track p-3" style="display:none;position:absolute;top:0;left:-10px;background:black;width:450px;z-index:100">
+            <pre>
+            ${music.note}
+            </pre>
+            </div>
+            <button class="trackBtn" data-open=".track" style="z-index:101">track</button>
+            </div>
+            `
+            html += tmp
+        })
+        return html;
+    }
+    $('#musicPageList').on('click', 'a', function() {
+        event.preventDefault();
+        loadMusic($(this).data('page'));
+    })
 </script>
