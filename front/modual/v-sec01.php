@@ -110,7 +110,7 @@
     }
     //load
     function loadMusic(page) {
-        $.get('./api/album-page.php', {
+        $.get('./api/page-album.php', {
             page
         }, function(response) {
             $('#musicPageList').html(MusicPageListHtml(page, response.pages))
@@ -120,7 +120,7 @@
     }
 
     function loadConcert(nowpage) {
-        $.get('./api/concert-page.php', {
+        $.get('./api/page-concert.php', {
             nowpage
         }, function(res) {
             $('#ConcertList').html(ConcertListHtml(res.rows))
@@ -150,4 +150,5 @@
 
     loadMusic(1);
     loadConcert(1);
+    loadBook(1);
 </script>
