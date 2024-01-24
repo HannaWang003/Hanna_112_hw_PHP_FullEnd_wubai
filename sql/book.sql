@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-24 02:29:19
--- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- 產生時間： 2024-01-24 17:17:17
+-- 伺服器版本： 10.4.32-MariaDB
+-- PHP 版本： 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id`, `img`, `isbn`, `book`, `text`, `date`, `sh`) VALUES
-(3, 'wubai-book-192.jpg', '9789571091389', '伍佰‧滑雪場', '滑雪，其實就是人生。\n有時候享受追逐速度的快感，有時候感受奇異風景的沿途。--', '2020-11-01', 1);
+(7, 'wubai-book-192.jpg', '9789571091389', '伍佰‧滑雪場', '滑雪，其實就是人生。\n有時候享受追逐速度的快感，有時候感受奇異風景的沿途。', '2020-11-01', 1);
 
 --
 -- 已傾印資料表的索引
@@ -62,7 +62,7 @@ ALTER TABLE `book`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

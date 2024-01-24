@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-24 02:29:10
--- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- 產生時間： 2024-01-24 17:17:31
+-- 伺服器版本： 10.4.32-MariaDB
+-- PHP 版本： 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,17 +31,18 @@ CREATE TABLE `channelbook` (
   `id` int(10) UNSIGNED NOT NULL,
   `isbn` text DEFAULT NULL,
   `name` text DEFAULT NULL,
-  `url` text DEFAULT NULL
+  `url` text DEFAULT NULL,
+  `sh` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `channelbook`
 --
 
-INSERT INTO `channelbook` (`id`, `isbn`, `name`, `url`) VALUES
-(1, '9789571091389', '博客來', 'https://www.books.com.tw/products/0010874459?sloc=main'),
-(2, '9789571091389', '誠品', 'https://www.eslite.com/product/1001125622681933043005'),
-(3, '9789571091389', '金石堂', 'https://www.kingstone.com.tw/basic/2019580025554?zone=book&lid=search&actid=WISE&kw=%E4%BC%8D%E4%BD%B0&pi=0');
+INSERT INTO `channelbook` (`id`, `isbn`, `name`, `url`, `sh`) VALUES
+(149, '9789571091389', '誠　品', 'https://reurl.cc/gMQL47', 1),
+(150, '9789571091389', '金石堂', 'https://reurl.cc/bRxZol', 1),
+(151, '9789571091389', '博客來', 'https://reurl.cc/MdGAeX', 1);
 
 --
 -- 已傾印資料表的索引
@@ -61,7 +62,7 @@ ALTER TABLE `channelbook`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `channelbook`
 --
 ALTER TABLE `channelbook`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
