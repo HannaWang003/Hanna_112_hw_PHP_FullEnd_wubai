@@ -25,7 +25,7 @@ table {
 </style>
 
 <body
-    style="background:url(./img/2008flower_1_07.jpeg) black;background-size:cover;background-repeat:no-repeat;background-position:bottom right;background-attachment:fixed;color:#ccc;text-shadow:2px 2px 0px black">
+    style="background:url(./img/2008flower_1_07.jpeg) black;background-size:cover;background-repeat:no-repeat;background-position:bottom right;background-attachment:fixed;color:#ccc;text-weight:bolder">
     <div id="frame">
         <div id="addModual" style="display:none;z-index:500 ">
             <div id="addCover">

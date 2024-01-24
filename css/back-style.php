@@ -136,7 +136,8 @@
 
     #BackMusic,
     #BackConcert,
-    #BackNews {
+    #BackNews,
+    #BackChannel {
         width: 80%;
         margin: auto;
 

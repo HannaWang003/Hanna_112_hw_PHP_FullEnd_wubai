@@ -89,7 +89,7 @@
                 <td><input type="checkbox" name="sh" class="sh" <?= ($row['sh'] == 1) ? "checked" : "" ?>></td>
                 <td>
                     <i class="EditBtn fa-regular fa-pen-to-square fa-xl" data-id="<?= $row['id'] ?>" data-table="<?= $_GET['do'] ?>"></i>
-                    <button onclick="go('./back/add-channel.php',<?= $row['id'] ?>)"><i class="fa-solid fa-folder-plus fa-xl"></i></button>
+                    <button onclick="go('./back/add-channel.php','<?= $row['isbn'] ?>','<?= $row['book'] ?>')"><i class="fa-solid fa-folder-plus fa-xl"></i></button>
                 </td>
             </tr>
         <?php
@@ -99,26 +99,15 @@
 </main>
 <script>
     // ajax
-    function go(url, id) {
+    function go(url, isbn,book) {
         $.get(url, {
-            id
+            isbn,
+            book
         }, function(data) {
             $('#Back').html(data);
         })
     }
-    // function go(url) {
-    //     $.ajax({
-    //         url: url,
-    //         type: "get",
-    //         success: function(data) {
-    //             $('#Back').html(data);
-    //         },
-    //         error: function() {
-    //             console.log('請求失敗');
-    //         }
-    //     })
-    // }
-    // ajax_end
+
     $(".editFile").on('click', function() {
         let table = $(this).data('table');
         let id = $(this).data('id');
