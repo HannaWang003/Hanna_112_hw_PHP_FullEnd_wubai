@@ -4,22 +4,22 @@ $isbn = $_GET['isbn'];
 
 ?>
 <style>
-    table {
-        width: 80vw;
-        margin: auto;
+table {
+    width: 80vw;
+    margin: auto;
 
-        tr,
-        th,
-        td {
-            text-align: center;
-            border: 1px solid black;
-            /* text-align: center; */
-            vertical-align: middle;
-            padding: 10px;
-
-        }
+    tr,
+    th,
+    td {
+        text-align: center;
+        border: 1px solid black;
+        /* text-align: center; */
+        vertical-align: middle;
+        padding: 10px;
 
     }
+
+}
 </style>
 <h1>Channel M</h1>
 <main id="BackChannel" class="container">
@@ -68,26 +68,28 @@ $isbn = $_GET['isbn'];
 
                 foreach ($rows as $row) {
             ?>
-                    <tr>
-                        <td><?= $row['isbn'] ?></td>
-                        <td style="white-space:nowrap"><?= $row['name'] ?></td>
-                        <td><textarea name="url[]" style="width:100%"><?= $row['url'] ?></textarea></td>
-                        <td><input type="checkbox" name="sh[]" id="" value="<?= $row['id'] ?>" <?= ($row['sh'] == 1) ? "checked" : "" ?>>
-                    <input type="hidden" name="id[]" value="<?= $row['id'] ?>">    
-                    </td>
-                        <td>
-                            <ion-icon class="DelBtn" name="trash-sharp" size="large" data-id="<?= $row['id'] ?>" data-table="channelbook">
-                            </ion-icon>
-                        </td>
-                    </tr>
-                <?php
+            <tr>
+                <td><?= $row['isbn'] ?></td>
+                <td style="white-space:nowrap"><?= $row['name'] ?></td>
+                <td><textarea name="url[]" style="width:100%"><?= $row['url'] ?></textarea></td>
+                <td><input type="checkbox" name="sh[]" id="" value="<?= $row['id'] ?>"
+                        <?= ($row['sh'] == 1) ? "checked" : "" ?>>
+                    <input type="hidden" name="id[]" value="<?= $row['id'] ?>">
+                </td>
+                <td>
+                    <ion-icon class="DelBtn" name="trash-sharp" size="large" data-id="<?= $row['id'] ?>"
+                        data-table="channelbook">
+                    </ion-icon>
+                </td>
+            </tr>
+            <?php
                 }
                 ?>
-                <tr>
-                    <td colspan="5">
-                        <button>確認修改</button>
-                    </td>
-                </tr>
+            <tr>
+                <td colspan="5">
+                    <button>確認修改</button>
+                </td>
+            </tr>
             <?php
             } else {
                 echo "<tr><td colspan=5>請增加販售通路</td></tr>";
@@ -97,7 +99,7 @@ $isbn = $_GET['isbn'];
     </form>
 </main>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
     $('#AddBtn').on('click', () => {
         $('#AddContainer').parent().parent().fadeIn();
     })
@@ -140,7 +142,9 @@ $isbn = $_GET['isbn'];
                     <td>${channel['isbn']}</td>
                     <td style="white-space:nowrap">${channel['name']}</td>
                         <td><textarea name="url[]" style="width:100%">${channel['url']}</textarea></td>
-                        <td><input type="checkbox" name="sh[]" id="" value="${channel['id']}" ${channel['sh'] == 1 ? 'checked' : ''}></td>
+                        <td><input type="checkbox" name="sh[]" id="" value="${channel['id']}" ${channel['sh'] == 1 ? 'checked' : ''}>
+                        <input type="hidden" name="id[]" value="${channel['id']}">
+                        </td>
                         <td>
                         <ion-icon class="DelBtn" name="trash-sharp" size="large" data-id="${channel['id']}" data-table="channelbook">
                         </ion-icon>
@@ -148,7 +152,7 @@ $isbn = $_GET['isbn'];
                         </tr>`;
                     html += tmp;
                 });
-                html+=`
+                html += `
                 <tr>
                     <td colspan="5">
                         <button>確認修改</button>
@@ -164,9 +168,9 @@ $isbn = $_GET['isbn'];
     })
     $('#channelEdit').submit(function(even) {
         event.preventDefault();
-let formData = new FormData(this);
-console.log(saveData)
-$.ajax({
+        let formData = new FormData(this);
+        console.log(formData)
+        $.ajax({
             url: './api/save_channel.php',
             type: 'POST',
             data: formData,
@@ -179,7 +183,9 @@ $.ajax({
                     <td>${channel['isbn']}</td>
                     <td style="white-space:nowrap">${channel['name']}</td>
                         <td><textarea name="url[]" style="width:100%">${channel['url']}</textarea></td>
-                        <td><input type="checkbox" name="sh[]" id="" value="${channel['id']}" ${channel['sh'] == 1 ? 'checked' : ''}></td>
+                        <td><input type="checkbox" name="sh[]" id="" value="${channel['id']}" ${channel['sh'] == 1 ? 'checked' : ''}>
+                <input type="hidden" name="id[]" value="${channel['id']}">
+                </td>
                         <td>
                         <ion-icon class="DelBtn" name="trash-sharp" size="large" data-id="${channel['id']}" data-table="channelbook">
                         </ion-icon>
@@ -187,7 +193,7 @@ $.ajax({
                         </tr>`;
                     html += tmp;
                 });
-                html+=`
+                html += `
                 <tr>
                     <td colspan="5">
                         <button>確認修改</button>
@@ -196,10 +202,13 @@ $.ajax({
                 `
                 $('#channelhead').nextAll('tr').remove();
                 $('#channelhead').after(html);
-        
-    }
 
-})
-})
+            },
+
+            error: function() {
+                console.log("錯誤")
+            }
+        })
     })
+})
 </script>
