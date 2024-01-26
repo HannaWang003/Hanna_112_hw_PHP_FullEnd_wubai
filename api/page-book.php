@@ -6,7 +6,7 @@ $nowpage = ($_GET['nowpage']) ?? 1;
 $size = 6;
 $pages = ceil($total / $size);
 $start = ($nowpage - 1) * $size;
-$rows = $Concert->all(['sh' => 1], "ORDER BY date DESC LIMIT $start, $size");
+$rows = $DB->all(['sh' => 1], "ORDER BY date DESC LIMIT $start, $size");
 
 $response = [
     'rows' => $rows,

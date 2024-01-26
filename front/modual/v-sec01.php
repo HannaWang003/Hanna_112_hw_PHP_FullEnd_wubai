@@ -163,14 +163,14 @@
         })
     }
     function loadBook(nowpage,table){
-        $.get('./api/page-book.php'),{
+        $.get('./api/page-book.php',{
             nowpage,
-            table
+            table,
         },function(res){
             console.log(res)
             $('#BookList').html(BookListHtml(res.rows))
             $('#BookPageList').html(BookPageListHtml(nowpage, res.pages))
-        }
+        })
     }
     //onclick
     $('#musicPageList').on('click', 'a', function() {
@@ -195,5 +195,5 @@
 
     loadMusic(1);
     loadConcert(1);
-    loadBook(1,'Book');
+    loadBook(1,"Book");
 </script>
