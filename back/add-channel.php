@@ -3,7 +3,7 @@ include_once "../api/db.php";
 $isbn = $_GET['isbn'];
 $total = $Channelbook->count(['isbn' => $isbn]);
 $size = 5;
-$pages = ceil($total / $size);
+$pages = (ceil($total / $size) <= 0) ? 1 : ceil($total / $size);
 ?>
 <style>
     table {
