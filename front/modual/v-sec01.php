@@ -167,6 +167,7 @@
             nowpage,
             table
         },function(res){
+            console.log(res)
             $('#BookList').html(BookListHtml(res.rows))
             $('#BookPageList').html(BookPageListHtml(nowpage, res.pages))
         }
