@@ -33,11 +33,15 @@
 
         <div class="inner-section">
             <h1><span></span> <span>BOOK</span> <span></span></h1>
-            <p></p>
+            <div id=BookList class="row justify-content-end w-75 ms-auto me-0">
+                <!-- ajax-content -->
+            </div>
+            <p id="BookPageList" style="position:absolute;bottom:0;" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
+                <!-- ajax-pages -->
+            </p>
         </div>
 
     </div>
-
 </section>
 <script>
     // music
@@ -96,8 +100,39 @@
         })
         return html;
     }
-
     function ConcertPageListHtml(nowpage, pages) {
+        let html = ''
+        for (i = 1; i <= pages; i++) {
+            let style = (nowpage == i) ? "font-size:3rem;font-weight:bolder" : "";
+            let tmp = `
+    <a href="#" data-page="${i}" style="${style}"> ${i}  </a>
+    `
+            html += tmp
+        }
+        return html
+    }
+    //book
+    function BookListHtml(rows) {
+        let html = ''
+        rows.forEach(function(book) {
+            let tmp = `
+            <div class="row">
+    <div class="col">
+        <div><img src="./img/${book.img}" alt=""></div>
+        <div><span>ISBN: </span><span>${book.isbn}</span></div>
+        <div><span>${book.date}</span></div>
+    </div>
+    <div class="col">
+        <div><h5>${book.book}</h5></div>
+        <div><b>${book.text}</b></div>
+    </div>
+</div>
+            `
+            html += tmp
+        })
+        return html;
+    }
+    function BookPageListHtml(nowpage, pages) {
         let html = ''
         for (i = 1; i <= pages; i++) {
             let style = (nowpage == i) ? "font-size:3rem;font-weight:bolder" : "";
@@ -127,6 +162,15 @@
             $('#ConcertPageList').html(ConcertPageListHtml(nowpage, res.pages))
         })
     }
+    function loadBook(nowpage,table){
+        $.get('./api/page-book.php'),{
+            nowpage,
+            table
+        },function(res){
+            $('#BookList').html(BookListHtml(res.rows))
+            $('#BookPageList').html(BookPageListHtml(nowpage, res.pages))
+        }
+    }
     //onclick
     $('#musicPageList').on('click', 'a', function() {
         event.preventDefault();
@@ -142,13 +186,13 @@
         event.preventDefault();
         loadMusic($(this).data('page'));
     })
-    $('#ConcertList').on('click', '.trackBtn', function() {
-        let parentElement = $(this).parent();
-        $('.track').not(parentElement.find('.track')).hide();
-        parentElement.find('.track').toggle();
-    })
+    // $('#ConcertList').on('click', '.trackBtn', function() {
+    //     let parentElement = $(this).parent();
+    //     $('.track').not(parentElement.find('.track')).hide();
+    //     parentElement.find('.track').toggle();
+    // })
 
     loadMusic(1);
     loadConcert(1);
-    loadBook(1);
+    loadBook(1,'Book');
 </script>
