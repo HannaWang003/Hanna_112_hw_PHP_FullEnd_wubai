@@ -28,8 +28,7 @@
                     <!-- <input type="file" name="img[]"> -->
 
                     <div>
-                        <img class="previewImage"
-                            style="max-width: 300px; max-height: 300px; margin-top: 10px; display: none;">
+                        <img class="previewImage" style="max-width: 300px; max-height: 300px; margin-top: 10px; display: none;">
                         <input class="imageInput" type="file" name="img[]" id="">
                     </div>
                 </td>
@@ -80,50 +79,47 @@
         }
         foreach ($rows as $row) {
         ?>
-        <tr>
-            <td>
-                <ion-icon class="DelBtn" name="trash-sharp" size="large" data-id="<?= $row['id'] ?>"
-                    data-table="<?= $_GET['do'] ?>"></ion-icon>
-            </td>
-            <td><input type="date" class="date" name="date" value="<?= $row['date'] ?>"></td>
-            <td class="text-center">
-                <img src="./img/<?= $row['img'] ?>">
-                <br>
-                <button class="editFile" data-id="<?= $row['id'] ?>" data-table=<?= $_GET['do'] ?>>更換專輯封面</button>
-            </td>
-            <td><input type="text" class="album" name="album" value="<?= $row['album'] ?>"></td>
-            <td><input type="text" class="publisher" name="publisher" value="<?= $row['publisher'] ?>"></td>
-            <td><input type="text" class="num" name="num" value="<?= $row['num'] ?>"></td>
-            <td><textarea class="note" name="note" id="" style="height:10vh"><?= $row['note'] ?></textarea></td>
-            <td><input type="checkbox" class="sh" name="sh" value="<?= $row['sh'] ?>"
-                    <?= ($row['sh'] == 1) ? "checked" : "" ?>>
-            </td>
-            <td>
-                <i class="EditBtn fa-regular fa-pen-to-square fa-xl" data-id="<?= $row['id'] ?>"
-                    data-table="<?= $_GET['do'] ?>"></i>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <ion-icon class="DelBtn" name="trash-sharp" size="large" data-id="<?= $row['id'] ?>" data-table="<?= $_GET['do'] ?>"></ion-icon>
+                </td>
+                <td><input type="date" class="date" name="date" value="<?= $row['date'] ?>"></td>
+                <td class="text-center">
+                    <img src="./img/<?= $row['img'] ?>">
+                    <br>
+                    <button class="editFile" data-id="<?= $row['id'] ?>" data-table=<?= $_GET['do'] ?>>更換專輯封面</button>
+                </td>
+                <td><input type="text" class="album" name="album" value="<?= $row['album'] ?>"></td>
+                <td><input type="text" class="publisher" name="publisher" value="<?= $row['publisher'] ?>"></td>
+                <td><input type="text" class="num" name="num" value="<?= $row['num'] ?>"></td>
+                <td><textarea class="note" name="note" id="" style="height:10vh"><?= $row['note'] ?></textarea></td>
+                <td><input type="checkbox" class="sh" name="sh" value="<?= $row['sh'] ?>" <?= ($row['sh'] == 1) ? "checked" : "" ?>>
+                </td>
+                <td>
+                    <i class="EditBtn fa-regular fa-pen-to-square fa-xl" data-id="<?= $row['id'] ?>" data-table="<?= $_GET['do'] ?>"></i>
+                </td>
+            </tr>
         <?php
         }
         ?>
     </table>
 </main>
 <script>
-$(".editFile").on('click', function() {
-    let table = $(this).data('table');
-    let id = $(this).data('id');
-    op("#addModual", "#addMain", "./back/modual/edit_file.php?do=" + table + "&&id=" + id);
-})
-$('#AddBtn').on('click', () => {
-    $('#AddContainer').parent().parent().fadeIn();
-})
-$('#CancelAddBtn').on('click', () => {
-    $('#AddContainer').nextAll('tr').remove();
-    $('#AddContainer').parent().parent().hide();
-})
+    $(".editFile").on('click', function() {
+        let table = $(this).data('table');
+        let id = $(this).data('id');
+        op("#addModual", "#addMain", "./back/modual/edit_file.php?do=" + table + "&&id=" + id);
+    })
+    $('#AddBtn').on('click', () => {
+        $('#AddContainer').parent().parent().fadeIn();
+    })
+    $('#CancelAddBtn').on('click', () => {
+        $('#AddContainer').nextAll('tr').remove();
+        $('#AddContainer').parent().parent().hide();
+    })
 
-$('#AddMoreBtn').click(function() {
-    let AddTo = `<tr>
+    $('#AddMoreBtn').click(function() {
+        let AddTo = `<tr>
             <td><input type="date" name="date[]"></td>
             <td>
             <img class="previewImage" style="max-width: 300px; max-height: 300px; margin-top: 10px; display: none;">
@@ -135,51 +131,51 @@ $('#AddMoreBtn').click(function() {
             <td><textarea name="note[]" id="" style="height:10vh"></textarea></td>
         <td></td>
         </tr>`;
-    $('#AddContainer').after(AddTo)
-})
-$('#ClearAddBtn').click(function() {
-    $('#AddContainer').next('tr').remove();
-})
-$('.DelBtn').click(function() {
-    let id = $(this).data('id');
-    let table = $(this).data('table');
-    if (confirm('Are you sure?')) {
-        $(this).parent().parent().fadeOut();
-        $.post('./api/del.php', {
-            id,
-            table
-        }, function() {
-            alert("已刪除");
-        });
-        location.reload();
-    }
-
-})
-$('.EditBtn').click(function() {
-    if (confirm("確定修改?")) {
+        $('#AddContainer').after(AddTo)
+    })
+    $('#ClearAddBtn').click(function() {
+        $('#AddContainer').next('tr').remove();
+    })
+    $('.DelBtn').click(function() {
         let id = $(this).data('id');
         let table = $(this).data('table');
-        let top = $(this).parent().parent();
-        let sh = (top.find('.sh').prop('checked')) ? 1 : 0;
-        let newdata = {
-            id: id,
-            date: top.find('.date').val(),
-            album: top.find('.album').val(),
-            publisher: top.find('.publisher').val(),
-            num: top.find('.num').val(),
-            note: top.find('.note').val(),
-            sh: sh,
+        if (confirm('Are you sure?')) {
+            $(this).parent().parent().fadeOut();
+            $.post('./api/del.php', {
+                id,
+                table
+            }, function() {
+                alert("已刪除");
+            });
+            location.reload();
         }
-        // console.log(newdata);
-        $.post("./api/edit.php", {
-            id,
-            table,
-            newdata
-        }, function(res) {
-            alert(res + "筆資料已修改");
-        })
-    }
-    location.reload();
 
-})
+    })
+    $('.EditBtn').click(function() {
+        if (confirm("確定修改?")) {
+            let id = $(this).data('id');
+            let table = $(this).data('table');
+            let top = $(this).parent().parent();
+            let sh = (top.find('.sh').prop('checked')) ? 1 : 0;
+            let newdata = {
+                id: id,
+                date: top.find('.date').val(),
+                album: top.find('.album').val(),
+                publisher: top.find('.publisher').val(),
+                num: top.find('.num').val(),
+                note: top.find('.note').val(),
+                sh: sh,
+            }
+            // console.log(newdata);
+            $.post("./api/edit.php", {
+                id,
+                table,
+                newdata
+            }, function(res) {
+                alert(res + "筆資料已修改");
+            })
+        }
+        location.reload();
+
+    })
 </script>
