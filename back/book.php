@@ -126,8 +126,10 @@
             <img class="previewImage" style="max-width: 300px; max-height: 300px; margin-top: 10px; display: none;">
             <input class='imageInput' type="file" name="img[]">
             </td>
-            <td><input type="text" name="text[]"></td>
-        <td></td>
+            <td><input type="text" name="isbn[]" class="isbn"></td>
+                <td><input type="text" name="book[]" class="book"></td>
+                <td><textarea name="text[]" class="text" cols="30" rows="10"></textarea></td>
+                <td><input type="date" name=date[] class="date"></td>
         </tr>`;
         $('#AddContainer').after(AddTo)
     })
