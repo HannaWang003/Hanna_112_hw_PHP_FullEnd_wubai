@@ -136,11 +136,12 @@ dir = "flex-row-reverse"
                 end= "text-end"
             }
             let tmp = `
-            <div class="row m-2 ${dir}">
+            <div class="row m-3 ${dir}">
     <div class="col-4 ${end}">
         <div><img src="./img/${book.img}" alt=""></div>
         <div><span>ISBN: </span><span>${book.isbn}</span></div>
         <div><span>${book.date}</span></div>
+        <div id="channel${book.id}"></div>
     </div>
     <div class="Bookdesc col-7 bg-dark bg-opacity-50" style="position:relative;box-shadow:1px 1px 2px black">
         <div><h5 style="color:yellow">${book.book}</h5></div>
@@ -148,7 +149,6 @@ dir = "flex-row-reverse"
         <b style="white-space:wrap">${book.text.substring(0,100)}...</b>
         <div class="detail bg-light shadow-sm p-5 text-dark" style="z-index:500;display:none;white-space:wrap;position:absolute;top:0;left:0">${book.text}</div>
         </div>
-        <div id="channel${book.id}"></div>
     </div>
 </div>
             `
