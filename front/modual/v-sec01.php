@@ -10,34 +10,36 @@
 
     <div class="anim-wrap">
 
-        <div class="inner-section">
+        <div class="inner-section p-5">
             <h1><span data-scroll data-scroll-direction="horizontal" data-scroll-speed="-1">EVENT</span> <span data-scroll data-scroll-direction="horizontal" data-scroll-speed="-2">MUSIC</span> <span data-scroll data-scroll-direction="horizontal" data-scroll-speed="1">album</span></h1>
+            <p id="musicPageList" style="position:absolute;left:10%" data-scroll data-scroll-direction="horizontal" data-scroll-speed="-2">
+                <!-- ajax-pages -->
+            </p>
             <div id=musicList class="row justify-content-end w-75 ms-auto me-0">
                 <!-- ajax-content -->
             </div>
-            <p id="musicPageList" style="position:absolute;bottom:0;" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
-                <!-- ajax-pages -->
-            </p>
         </div>
 
-        <div class="inner-section center">
+        <div class="inner-section center p-5">
             <h1><span></span> <span style="width:80vw;text-align:end;color:white">CONCERT</span> <span></span></h1>
-            <p></p>
+            <p id="ConcertPageList" style="position:absolute;right:0;" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
+                <!-- ajax-pages -->
+            </p>
             <div id="ConcertList" style="width:60vw;height:100vh;" class="d-flex flex-wrap justify-content;center">
                 <!-- ajax-content -->
             </div>
-            <p id="ConcertPageList" style="position:absolute;bottom:0;" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
-                <!-- ajax-pages -->
-            </p>
         </div>
 
-        <div class="inner-section">
-            <h1><span></span> <span>BOOK</span> <span></span></h1>
-            <p></p>
+        <div class="inner-section p-5">
+            <h1><span></span> <span>BOOK</span></h1>
+                <p id="BookPageList" style="position:absolute;left:10%">
+          <!-- ajax-pages -->
+    </p> 
+            <div id=BookList class="row justify-content-end w-75 ms-auto me-0">
+                <!-- ajax-content -->
+            </div>
         </div>
-
     </div>
-
 </section>
 <script>
     // music
@@ -96,8 +98,65 @@
         })
         return html;
     }
-
     function ConcertPageListHtml(nowpage, pages) {
+        let html = ''
+        for (i = 1; i <= pages; i++) {
+            let style = (nowpage == i) ? "font-size:3rem;font-weight:bolder" : "";
+            let tmp = `
+    <a href="#" data-page="${i}" style="${style}"> ${i}  </a>
+    `
+            html += tmp
+        }
+        return html
+    }
+    //book
+    function BookListHtml(rows) {
+        let html = ''
+        rows.forEach(function(book,idx) {
+            let isbn = book.isbn
+            let id= book.id
+            $.get('./api/channel.php',{isbn},function(res){
+                let tmp=""
+                res.forEach(function(data){
+                    tmp+=
+                    `
+                    <a class="border border-light" href="${data.url}" target="_block" style="font-size:1rem;font-weight:bolder;padding:5px">${data.name}</a> / 
+                    `
+                    
+                    // console.log(data)
+                })
+                $("#channel"+id).append(tmp)
+            })
+            let dir="";
+            let end="";
+            if(idx%2==1){
+dir = "flex-row-reverse"
+            }
+            else{
+                end= "text-end"
+            }
+            let tmp = `
+            <div class="row m-2 ${dir}">
+    <div class="col-4 ${end}">
+        <div><img src="./img/${book.img}" alt=""></div>
+        <div><span>ISBN: </span><span>${book.isbn}</span></div>
+        <div><span>${book.date}</span></div>
+    </div>
+    <div class="Bookdesc col-7 bg-dark bg-opacity-50" style="position:relative;box-shadow:1px 1px 2px black">
+        <div><h5 style="color:yellow">${book.book}</h5></div>
+        <div class="h-50">
+        <b style="white-space:wrap">${book.text.substring(0,100)}...</b>
+        <div class="detail bg-light shadow-sm p-5 text-dark" style="z-index:500;display:none;white-space:wrap;position:absolute;top:0;left:0">${book.text}</div>
+        </div>
+        <div id="channel${book.id}"></div>
+    </div>
+</div>
+            `
+            html += tmp
+        })
+        return html;
+    }
+    function BookPageListHtml(nowpage, pages) {
         let html = ''
         for (i = 1; i <= pages; i++) {
             let style = (nowpage == i) ? "font-size:3rem;font-weight:bolder" : "";
@@ -127,6 +186,16 @@
             $('#ConcertPageList').html(ConcertPageListHtml(nowpage, res.pages))
         })
     }
+    function loadBook(nowpage,table){
+        $.get('./api/page-book.php',{
+            nowpage,
+            table,
+        },function(res){
+            // console.log(res)
+            $('#BookList').html(BookListHtml(res.rows))
+            $('#BookPageList').html(BookPageListHtml(nowpage, res.pages))
+        })
+    }
     //onclick
     $('#musicPageList').on('click', 'a', function() {
         event.preventDefault();
@@ -142,13 +211,21 @@
         event.preventDefault();
         loadMusic($(this).data('page'));
     })
-    $('#ConcertList').on('click', '.trackBtn', function() {
-        let parentElement = $(this).parent();
-        $('.track').not(parentElement.find('.track')).hide();
-        parentElement.find('.track').toggle();
+    $('#BookPageList').on('click', 'a', function() {
+        event.preventDefault();
+       loadBook($(this).data('page'),"Book");
     })
+    //hover
+    $('#BookList').on({
+        mouseenter:function(){
+            $(this).find('.detail').show();
+        },
+        mouseleave: function() {
+    $(this).find('.detail').hide();
+  }
+    },'.Bookdesc')
 
     loadMusic(1);
     loadConcert(1);
-    loadBook(1);
+    loadBook(1,"Book");
 </script>

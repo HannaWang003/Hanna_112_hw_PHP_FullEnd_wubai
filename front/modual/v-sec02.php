@@ -34,7 +34,7 @@
                 $('.goto').on('click', function() {
     var target = $(this).attr('data-to');
     target = document.querySelector(target);
-    console.log(target)
+    // console.log(target)
     locoScroll.scrollTo(target);
     $('#menu').hide();
 
