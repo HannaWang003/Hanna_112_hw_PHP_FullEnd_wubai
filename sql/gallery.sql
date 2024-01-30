@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-30 06:05:05
--- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- 產生時間： 2024-01-24 17:32:05
+-- 伺服器版本： 10.4.32-MariaDB
+-- PHP 版本： 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,7 @@ INSERT INTO `gallery` (`id`, `img`, `text`, `subject_id`, `sh`) VALUES
 (9, '2008flower_1_03.jpeg', '2', 3, 1),
 (10, '2008flower_1_02.jpeg', '3', 3, 1),
 (13, '2008flower_1_01.jpeg', '6', 3, 1),
-(14, '2008flower_1_04.jpeg', 'Legacy今夜伍佰', 0, 1),
+(14, '2008flower_2_14.jpeg', 'Legacy今夜伍佰', 0, 1),
 (15, '2010_03.jpeg', '今夜伍佰', 3, 1),
 (16, '2010_02.jpeg', '今夜伍佰', 3, 1),
 (17, '2010_01.jpeg', '今夜伍佰', 3, 1),
@@ -62,12 +62,7 @@ INSERT INTO `gallery` (`id`, `img`, `text`, `subject_id`, `sh`) VALUES
 (29, '2008flower_2_15.jpeg', 'Legacy今夜伍佰', 14, 1),
 (30, '2008flower_1_06.jpeg', 'Legacy今夜伍佰', 14, 1),
 (31, '2008flower_1_05.jpeg', 'Legacy今夜伍佰', 14, 1),
-(32, '2008flower_1_04.jpeg', 'Legacy今夜伍佰', 14, 1),
-(33, '20090521DragenFly01.jpeg', '2009-Dragen-fly', 0, 1),
-(34, '20090521DragenFly02.jpeg', '2009-Dragen-fly', 33, 1),
-(35, '20090521DragenFly03.jpeg', '2009-Dragen-fly', 33, 1),
-(36, '20090521DragenFly04.jpeg', '2009-Dragen-fly', 33, 1),
-(37, '20090521DragenFly05.jpeg', '2009-Dragen-fly', 33, 1);
+(32, '2008flower_1_04.jpeg', 'Legacy今夜伍佰', 14, 1);
 
 --
 -- 已傾印資料表的索引
@@ -87,7 +82,7 @@ ALTER TABLE `gallery`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
