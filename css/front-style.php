@@ -51,7 +51,7 @@
     }
 
     .main-container {
-        padding: 0 5vw;
+        /* padding: 0 5vw; */
         background: url('../img/flower_01_overhb.webp');
         background: black;
         background-size: cover;
@@ -62,16 +62,20 @@
     #menuBtn {
         /* width: 50px; */
         /* height: 50px; */
-        line-height: 100px;
+        /* line-height: 100px; */
         text-align: center;
-        background: yellow;
+        background: rgba(0,0,0,0.5);
         writing-mode: vertical-rl;
         font-size: 2vw;
         font-family: 'Bai jamjuree', sans-serif;
         text-transform: uppercase;
-        color: #333;
+        color: #ff0;
+        /* border-radius:50%; */
+        padding:10px;
+        /* border:1px solid #fff; */
+        box-shadow:0 0 150px #aaa;
         position: absolute;
-        mix-blend-mode: difference;
+        /* mix-blend-mode: difference; */
     }
 
     #menu {
@@ -124,14 +128,20 @@
     .navbar {
         display: flex;
         justify-content: space-between;
-        padding: 50px 0;
+        padding: 5vw;
         font-size: 2vw;
         letter-spacing: 1px;
         font-family: 'Syncopate', sans-serif;
         font-weight: 700;
-        color: #464646;
+        color: transparent;
+        -webkit-text-stroke: 1px #aaa;
         text-transform: uppercase;
         width: 90vw;
+        text-shadow:5px 5px 0px #222;
+    
+        .goto{
+            cursor:pointer;
+        }
     }
 
     .header-container {
@@ -153,13 +163,38 @@
     }
 
     #header-text {
+        transform:translateX(-50%);
         font-size: 18vw;
         text-transform: uppercase;
         text-align: center;
         font-family: 'Bai jamjuree', sans-serif;
         font-weight: 600;
-        color: yellow;
-        text-shadow: 0 0px 10px black;
+        background: linear-gradient(45deg, rgba(0,228,11,1) 6%, rgba(247,186,70,1) 19%, rgba(255,0,219,1) 46%, rgba(4,49,245,1) 78%, rgba(245,4,4,1) 100%);
+        -webkit-background-clip:text;
+        color: transparent;
+    -webkit-text-stroke: 2px #000;
+        /* text-shadow:
+        1px 1px #ff0,
+        2px 2px #ff0,
+        3px 3px #ff0,
+        4px 4px #ff0,
+        5px 5px #ff0,
+        6px 6px #ff0,
+        7px 7px #ff0,
+        8px 8px #ff0,
+        9px 9px #ff0,
+        10px 10px #ff0,
+        11px 11px #ff0,
+        12px 12px #ff0,
+        13px 13px #ff0,
+        14px 14px #ff0,
+        15px 15px #ff0,
+        16px 16px #ff0,
+        17px 17px #ff0,
+        18px 18px #ff0,
+        19px 19px #ff0,
+        20px 20px #ff0; */
+        /* text-shadow: 0 0px 10px black; */
         /* mix-blend-mode: difference; */
     }
 
@@ -168,9 +203,9 @@
         text-align: center;
         font-family: 'Bai jamjuree', sans-serif;
         font-weight: 600;
-        color: #000;
+        color: transparent;
         /* background:black; */
-        mix-blend-mode: darken;
+        -webkit-text-stroke:1px #FF0;
 
     }
 

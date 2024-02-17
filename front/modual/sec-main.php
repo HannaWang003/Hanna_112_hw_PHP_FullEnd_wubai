@@ -11,12 +11,35 @@
 .block {
     width: 100px;
     height: 100px;
-    background: yellow;
-    /* border-radius: 10%; */
-    margin: 5px;
+    background:rgba(50,50,50,1);
+    /* border-radius:50%; */
+    /* background: radial-gradient( rgba(0,228,11,1) 6%, rgba(247,186,70,1) 19%, rgba(255,0,219,1) 46%, rgba(4,49,245,1) 78%, rgba(245,4,4,1) 100%); */
+    border-radius: 50%;
+    margin: 1px;
     display: grid;
     place-items: center;
-    box-shadow: inset -5px -5px 10px #000;
+    box-shadow:
+    inset 0px 0px 1px #aaa,
+    1px 1px #000,
+        2px 2px #ff0,
+        3px 3px #000,
+        4px 4px #ff0,
+        5px 5px #000,
+        6px 6px #ff0,
+        7px 7px #000,
+        8px 8px #ff0,
+        9px 9px #000,
+        10px 10px #ff0,
+        11px 11px #ff0,
+        12px 12px #ff0,
+        13px 13px #ff0,
+        14px 14px #ff0,
+        15px 15px #ff0,
+        16px 16px #ff0,
+        17px 17px #ff0,
+        18px 18px #ff0,
+        19px 19px #ff0,
+        20px 20px #ff0; 
 
     /* &:before {
         content: "";
@@ -68,11 +91,14 @@
             <li>Featured</li>
         </ul> -->
         <h1 id="header-text" data-scroll data-scroll-speed="2">Wu Bai</h1>
-        <h3 id="header-h3" data-scroll data-scroll-speed="-3">Gōo-pah</h3>
+        <h3 id="header-h3" data-scroll data-scroll-speed="-5">Gōo-pah</h3>
     </div>
     <div id="menuBtn" class="btn" data-sw="#menu" style="z-index:100" data-scroll data-scroll-sticky
         data-scroll-target="#stickyt">open</div>
     <div id="menu" data-scroll data-scroll-sticky data-scroll-target="#stickyt" style="background:yellow">
+            <div>
+        <a class="toAdmin" href='?do=login'><div style='color:black;font-size:1.5rem'>root</div></a>
+            </div>
         <div style="display:flex">
             <div class="btn" data-sw="#menu">
                 <div style="width:30px;height:30px;">

@@ -7,7 +7,8 @@
         </h1>
         <p class="goto" data-to="#mainContainer" data-scroll>Where from, where to</p>
     </div>
-    <div style="width:60vw;height:100vh;border-left:1px solid #ccc;position:absolute;right:0;background:yellow">
+    <div style="width:60vw;height:100vh;border-left:1px solid #ccc;position:absolute;right:0;background:yellow; 
+">
         <?php
 $news = $News->all();
 // dd($news);

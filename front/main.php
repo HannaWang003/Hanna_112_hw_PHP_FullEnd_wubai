@@ -1,11 +1,14 @@
 <!-- <div id="loading-container"></div> -->
 <style>
-#toAdmin {
+.toAdmin {
     display: inline-block;
-    background: white;
+    background: rgba(255,255,255,0.3);
+    backdrop-filter:blur(30px);
     position: absolute;
     top: 10px;
     left: 10px;
+    padding:10px;
+    border-radius:50%;
     z-index: 200;
 
     div {
@@ -18,12 +21,11 @@
 </style>
 <div id="formal-container" data-scroll-container>
     <div class="content" id="stickyt">
-        <?php
+    <?php
         if (isset($_GET['to']) && $_GET['to'] == "admin") {
-            echo "<a id='toAdmin' href='?do=login'><div style='color:black;font-size:1.5rem'>root</div></a>";
-        }
-        ?>
-
+           echo "<a class='toAdmin' href='?do=login'><div style='color:transparent;backdrop-filter:blur(10px);font-size:1.5rem'>root</div></a>";
+         }
+        ?>   
         <?php
         include "./front/modual/sec-main.php";
         // horizontal 01 
